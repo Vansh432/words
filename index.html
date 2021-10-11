@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .sky{
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+     background:linear-gradient(#87ceeb,white 60% ) ;
+    }
+    .sun{
+        position:relative;
+        width: 100px;
+        height: 100px;
+        top:100px;
+        left: 25%;
+        transform: translateX(-50%);
+        background-color: #fdfbd3;
+        border-radius:50%;
+        box-shadow: 0px 0px 50px  #fdfbd3;
+        transition: 0.3s; 
+        cursor: pointer;
+    }
+    .dark{
+        background:#222873;
+    }
+    .dark .sun{
+        left: 75%;
+        box-shadow: 0px 0px 0px #fdfbd3;
+    }
+    .dark .sun::before{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color:#222873;
+        border-radius:50% ;
+       
+        top: -20px;
+        left: 22px;
+        
+    }
+
+    .dark #car1,.dark #car2{
+        animation-play-state: paused;
+    }
+
+  .enviro{
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+      height: 280px;
+      background-image: url(bg.png);
+      background-size:contain;
+     background-repeat: repeat-x;
+  }
+  #car1{
+      position: absolute;
+        max-width: 200px;
+        left: -200px;
+        bottom: 10px;
+        z-index: 9;
+        animation: runi 18s linear infinite;
+  }
+  @keyframes runi{
+      0%{
+          transform: translateX(0px);
+      }
+      100%{
+          transform: translateX(1800px);
+      }
+  }
+  #car2{
+      position: absolute;
+        max-width: 200px;
+        right: -200px;
+        bottom: 50px;
+        z-index: 7;
+        transform: rotate(180deg);
+        animation: runi1 18s linear infinite ;
+  }
+  @keyframes runi1{
+      0%{
+          transform: translateX(0px) rotateY(180deg);
+      }
+      100%{
+          transform: translateX(-1800px ) rotateY(180deg);
+      }
+  }
+
+
+</style>
+<body>
+    <section class="sky">
+     <div class="sun"></div>
+     <div class="enviro">
+      <img src="police_car.gif" alt="" id="car1">
+      <img src="police_car.gif" alt="" id="car2">
+     </div>
+    </section>
+<script>
+    let sun=document.querySelector('.sun');
+    let bod=document.querySelector('.sky');
+    sun.addEventListener('click',()=>{
+      bod.classList.toggle('dark');
+    
+    
+    })
+</script>    
+</body>
+
+</html>
